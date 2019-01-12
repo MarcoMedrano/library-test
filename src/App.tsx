@@ -53,7 +53,7 @@ const styles = ({ breakpoints, spacing, mixins }: Theme) => {
     toolbar: mixins.toolbar,
   });
 }
-const initialState = { currentPageIndex:0, mobileOpen: false, pages:["Authors", <BooksPage key='books' />] };
+const initialState = { currentPageIndex:1, mobileOpen: false, pages:["Authors", <BooksPage key='books' />] };
 type AppState = Readonly<typeof initialState>
 
 interface IAppProps extends WithStyles<typeof styles> {
