@@ -18,8 +18,9 @@ import AppStore from 'src/stores/AppStore';
 const styles = ({ palette}: Theme) => {
   return createStyles({
     root: {
+      alignSelf:'center',
     backgroundColor: palette.background.paper,
-      maxWidth: 360,
+      maxWidth: 560,
     width: '100%',
   },
 });
@@ -51,6 +52,7 @@ class BookList extends React.Component<IBookList, BookListState> {
           <BookIcon />
         </ListItemAvatar>
         <ListItemText primary={book.name} />
+        <ListItemText primary={book.edition.toString()} />
         <ListItemText primary={book.authors.length} />
         <ListItemSecondaryAction>
           

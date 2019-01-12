@@ -65,7 +65,7 @@ class SelectableAuthorList extends React.Component<ISelectableAuthorList, Select
 
   private handleToggle = (value:number) => () => {
 
-    AppStore.checkableAuthors[value].checked = true;
+    AppStore.checkableAuthors[value].checked = !AppStore.checkableAuthors[value].checked;
 
   };
 }

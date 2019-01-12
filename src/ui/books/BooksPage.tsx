@@ -10,7 +10,7 @@ import SelectableList from '../authors/SelectableList';
 import AppStore from 'src/stores/AppStore';
 import Book from 'src/model/Book';
 import BookList from './BookList';
-
+import {DateFormatInput} from 'material-ui-next-pickers'
 
 const styles = ({ mixins}: Theme) => {
     return createStyles({
@@ -48,18 +48,12 @@ class BooksPage extends React.Component<IBooksPage, BooksPageState> {
                                     value = {AppStore.editingBook.name}
                                     onChange = {e => AppStore.editingBook.name = e.target.value}
                                 />
-                                <TextField
-                                    required
-                                    id="name"
-                                    type="date"
-                                    label="Edition"
-                                    margin="normal"
-                                    value = {AppStore.editingBook.edition.toString()}
-                                    onChange = {e => AppStore.editingBook.edition = new Date(e.target.value)}
-                                    InputLabelProps={{
-                                        shrink: true,
-                                      }}
-                                />
+                                 <div style={{ padding: 32 }}>
+                                     <DateFormatInput  
+                                     name='date-input' 
+                                     value={AppStore.editingBook.edition} 
+                                     onChange={d => AppStore.editingBook.edition = d}/>
+                                 </div>
                             </Grid>
                         </div>
                         <SelectableList />
