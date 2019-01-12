@@ -9,6 +9,7 @@ import Button from '@material-ui/core/Button';
 import SelectableList from '../authors/SelectableList';
 import AppStore from 'src/stores/AppStore';
 import Book from 'src/model/Book';
+import BookList from './BookList';
 
 
 const styles = ({ mixins}: Theme) => {
@@ -54,7 +55,7 @@ class BooksPage extends React.Component<IBooksPage, BooksPageState> {
                                     label="Edition"
                                     margin="normal"
                                     value = {AppStore.editingBook.edition.toString()}
-                                    onChange = {e => console.log(e)}
+                                    onChange = {e => AppStore.editingBook.edition = new Date(e.target.value)}
                                     InputLabelProps={{
                                         shrink: true,
                                       }}
@@ -66,14 +67,16 @@ class BooksPage extends React.Component<IBooksPage, BooksPageState> {
                     <div style={{ textAlign: "center", padding: 32 }}>
                         <Button color="primary" size="large" onClick={this.handleSave}>Save</Button>
                     </div>
+                    <BookList />
                 </Grid>
             </main>
         );
     }
 
     private handleSave(){
-        AppStore.editingBook.authors = AppStore.checkableAuthors.map(c => c.author);
+        AppStore.editingBook.authors = AppStore.checkableAuthors.filter(c => c.checked).map(c => c.author);
         AppStore.addBook(AppStore.editingBook);
+        AppStore.editingBook = new Book();
     }
 }
 
