@@ -5,6 +5,7 @@ import Book from 'src/model/Book';
 const authors:Author[] = [];
 authors.push({id:0, name:"Giannoco", books:[]});
 authors.push({id:1, name:"Casanovas", books:[]});
+const books:Book[] = [];
 
 export default class Dal implements IDal {
     public addAuthor(author: Author): Promise<void> {
@@ -19,6 +20,8 @@ export default class Dal implements IDal {
         });
     }
     public getBooks(): Promise<Book[]> {
-        throw new Error("Method not implemented.");
+        return new Promise<Book[]>((r, f)=>{
+            r(books);
+        });
     }
 }
