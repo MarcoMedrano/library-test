@@ -11,6 +11,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Avatar from '@material-ui/core/Avatar';
 
 import PersonIcon from '@material-ui/icons/Person';
+import AppStore from 'src/stores/AppStore';
 
 const styles = (theme) => ({
     root: {
@@ -23,7 +24,14 @@ const styles = (theme) => ({
 class CheckboxListSecondary extends React.Component {
   state = {
     checked: [1],
+    authors: [],
   };
+
+  componentDidMount = ()=>{
+    AppStore.getAuthors().then(authors=>{
+      this.setState({authors});
+    });
+  }
 
   handleToggle = value => () => {
     const { checked } = this.state;
@@ -46,20 +54,16 @@ class CheckboxListSecondary extends React.Component {
 
     return (
       <List dense className={classes.root}>
-        {[0, 1, 2, 3].map(value => (
-          <ListItem key={value} button>
+        {this.state.authors.map((author, index) => (
+          <ListItem key={author} button>
             <ListItemAvatar>
-              {/* <Avatar
-                alt={`Avatar n°${value + 1}`}
-                src={`/static/images/avatar/${value + 1}.jpg`}
-              /> */}
               <PersonIcon />
             </ListItemAvatar>
-            <ListItemText primary={`Line item ${value + 1}`} />
+            <ListItemText primary={author.name} />
             <ListItemSecondaryAction>
               <Checkbox
-                onChange={this.handleToggle(value)}
-                checked={this.state.checked.indexOf(value) !== -1}
+                onChange={this.handleToggle(index)}
+                checked={this.state.checked.indexOf(index) !== -1}
               />
             </ListItemSecondaryAction>
           </ListItem>
