@@ -17,6 +17,7 @@ import MailIcon from '@material-ui/icons/Mail';
 import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
+import BooksPage from './ui/books/BooksPage';
 const drawerWidth = 240;
 
 const styles = ({ breakpoints, spacing, mixins }: Theme) => {
@@ -52,7 +53,7 @@ const styles = ({ breakpoints, spacing, mixins }: Theme) => {
     toolbar: mixins.toolbar,
   });
 }
-const initialState = { currentPageIndex:0, mobileOpen: false, pages:["Authors", "Books"] };
+const initialState = { currentPageIndex:0, mobileOpen: false, pages:["Authors", <BooksPage key='books' />] };
 type AppState = Readonly<typeof initialState>
 
 interface IAppProps extends WithStyles<typeof styles> {
